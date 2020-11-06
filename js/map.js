@@ -113,24 +113,24 @@ jQuery(function($){
       .attr("id", function(d) { return state_id[d.id]; })
       .attr("class", 'state')
       .style("cursor", "pointer")
-      .style("stroke", "rgb(255,255,255)")
+      .style("stroke", "#343F49")
       .style("stroke-width", "1.5")
-      .style("fill", "rgb(52, 63, 73)")
+      .style("fill", "#fff")
       .on('mouseover', function(d, i) {
         if (!d3.select(this).classed('active')) {
-          d3.select(this).style('fill', 'rgb(255, 202, 54)'); // change to blue on hover
+          d3.select(this).style('fill', '#5AC9E7'); // change to blue on hover
         }
       })
       .on('mouseout', function(d, i) {
         if (!d3.select(this).classed('active')) {
-          d3.select(this).style('fill', 'rgb(52, 63, 73)'); // remove blue
+          d3.select(this).style('fill', '#fff'); // remove blue
         }
       })
       .on('click', function(d, i) {
         d3.selectAll('path').classed('active', false); // remove active classes
-        d3.selectAll('path').style({ 'fill': 'rgb(52, 63, 73)' }); // clear all colors
+        d3.selectAll('path').style({ 'fill': '#fff' }); // clear all colors
         d3.select(this).attr('class', 'active'); // add active class to current element
-        d3.select(this).style('fill', 'rgb(255, 202, 54)'); // fill current clicked state with blue
+        d3.select(this).style('fill', '#5AC9E7'); // fill current clicked state with blue
 
         // clear colors on all existing small boxes
         $('#small-states .small-state .box').css('background', '#343F49');
@@ -158,9 +158,9 @@ jQuery(function($){
 
         // update the map
         d3.selectAll('path').classed('active', false); // remove active classes
-        d3.selectAll('path').style({ 'fill': 'rgb(52, 63, 73)' }); // clear all colors
+        d3.selectAll('path').style({ 'fill': '#fff' }); // clear all colors
         d3.select(selected_elem).attr('class', 'active'); // add active class to current element
-        d3.select(selected_elem).style('fill', 'rgb(255, 202, 54)'); // fill current clicked state with blue
+        d3.select(selected_elem).style('fill', '#5AC9E7'); // fill current clicked state with blue
 
         // clear colors on all existing small boxes
         $('#small-states .small-state .box').css('background', '#343F49');

@@ -52,16 +52,23 @@ h2.map-section-title {
   float: left;
 }
 
-.map-content-wrap .state-filter {
-  margin-bottom: 30px;
-}
-
-.map-content-wrap .isp-title {
+.data-col-title {
   color: #fff;
   font-size: 1.5rem;
   padding-bottom: 5px;
   margin-bottom: 15px;
   border-bottom: 1px solid #fff;
+}
+
+.data-col-item {
+  font-size: 3rem;
+  line-height: 3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.data-col-block {
+  padding-top: 30px;
 }
 
 .map-content-wrap .isp-operators .provider {
@@ -259,8 +266,5 @@ h2.map-section-title {
   }
   .map-content-wrap .isp-title {
     font-size: 1.5rem;
-  }
-  .map-content-wrap .state-filter {
-    margin-bottom: 30px;
   }
 }
