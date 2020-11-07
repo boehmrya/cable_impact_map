@@ -67,7 +67,7 @@ var small_states =  {
 };
 
 
-jQuery(function($){
+$(function($){
 
   var w, width, height, wScale, hScale, mapSize, mapRatio;
 
@@ -181,24 +181,24 @@ jQuery(function($){
     // runs when dot is clicked or option in dropdown is selected
     function updateData(state_id) {
       // get location from dict
-      var state = data_states_metrics[state_id];
+      var state = data_states[state_id];
 
       // fill in cale isps with name and link
       // first, empty out the block
-      jQuery("#isp-operator-names").empty();
+      $("#isp-operator-names").empty();
 
       // Loading provider names into array to allow alpha sorting of provider images (quickfix - this module is not tied to its own Drupal admin sort preference...)
       var providerNames = [];
-      jQuery.each(data_states_metrics[state_id].providers, function(i,v) {
+      $.each(data_states[state_id].providers, function(i,v) {
            providerNames.push(this.name);
       });
 
       providerNames.sort();
 
       for(var q=0; q < providerNames.length; q++) {
-          jQuery.each(data_states_metrics[state_id].providers, function(i,v) {
+          $.each(data_states[state_id].providers, function(i,v) {
               if(this.name == providerNames[q])
-                jQuery("#isp-operator-names").append("<div class=\"provider\"><a href=\"" + this.link + "\" target=\"_blank\">" + this.name + "</a></div>");
+                $("#isp-operator-names").append("<div class=\"provider\"><a href=\"" + this.link + "\" target=\"_blank\">" + this.name + "</a></div>");
           });
       }
     }
