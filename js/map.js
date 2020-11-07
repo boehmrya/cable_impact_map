@@ -74,15 +74,11 @@ $(function($){
   w = $(window).width();
   //Width and height of map
   width = parseInt(d3.select('#state-map').style('width'));
+
   mapRatio = .71
   height = width * mapRatio;
+  viewBox = "0 0 " + width + " " + height;
 
-  if (w > 992) {
-    mapSize = 1.4 * width;
-  }
-  else {
-    mapSize = 0.5 * width;
-  }
 
   // D3 Projection
   var projection = d3.geo.albersUsa()
@@ -97,8 +93,8 @@ $(function($){
   //Create SVG element and append map to the SVG
   var svg = d3.select("#state-map")
   			.append("svg")
-  			.attr("width", width)
-  			.attr("height", height);
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("viewBox", viewBox);
 
   // Load GeoJSON for US States
   d3.json("../maps/us-states.json", function(json) {
