@@ -200,22 +200,32 @@ h2.map-section-title {
     color: #343F49;
 }
 @media all and (max-width: 1199px) {
+  .map-wrap {
+    width: 970px;
+  }
   .map-content-wrap #state-map {
-    width: 614px;
+    width: 650px;
   }
   .map-content-wrap .data-col {
-    width: 280px;
+    width: 260px;
     margin-right: 40px;
   }
   .map-content-wrap #small-states {
-    bottom: 160px;
+    bottom: 0px;
   }
   .map-content-wrap .isp-title {
     font-size: 1.35rem;
   }
+  .data-col-item {
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+  }
 }
 
 @media all and (max-width: 991px) {
+  .map-wrap {
+    width: 750px;
+  }
   .map-content-wrap .data-col {
     float: none;
     margin-bottom: 30px;

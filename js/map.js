@@ -125,7 +125,7 @@ $(function($){
       .on('click', function(d, i) {
         d3.selectAll('path').classed('active', false); // remove active classes
         d3.selectAll('path').style({ 'fill': '#fff' }); // clear all colors
-        d3.select(this).attr('class', 'active'); // add active class to current element
+        d3.select(this).classed('active', true); // add active class to current element
         d3.select(this).style('fill', '#5AC9E7'); // fill current clicked state with blue
 
         // clear colors on all existing small boxes
@@ -144,6 +144,9 @@ $(function($){
         updateData(state_id[d.id]);
       });
 
+      updateData('AL');
+      $('#AL').trigger('click');
+
     });
 
     // trigger map click events on select list change events
@@ -155,7 +158,7 @@ $(function($){
         // update the map
         d3.selectAll('path').classed('active', false); // remove active classes
         d3.selectAll('path').style({ 'fill': '#fff' }); // clear all colors
-        d3.select(selected_elem).attr('class', 'active'); // add active class to current element
+        d3.select(selected_elem).classed('active', true); // add active class to current element
         d3.select(selected_elem).style('fill', '#5AC9E7'); // fill current clicked state with blue
 
         // clear colors on all existing small boxes
@@ -225,7 +228,5 @@ $(function($){
       // set value in the select list and trigger an on change event
       $("#filterFormStateSelect").val(box_state).trigger('change');
     });
-
-    updateData('AL');
 
   });
