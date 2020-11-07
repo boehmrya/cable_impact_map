@@ -53,11 +53,11 @@ h2.map-section-title {
 }
 
 .data-col-title {
-  color: #fff;
+  color: #5AC9E7;
   font-size: 1.5rem;
   padding-bottom: 5px;
   margin-bottom: 15px;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #5AC9E7;
 }
 
 .data-col-item {
@@ -106,17 +106,18 @@ h2.map-section-title {
   margin-right: 10px;
   width: 20px;
   height: 20px;
-  background: #343F49;
+  background: #fff;
   cursor: pointer;
 }
 
 .map-content-wrap #small-states .small-state .box:hover {
-  background: #ffca36 !important;
+  background: #5AC9E7 !important;
 }
 
 .map-content-wrap #small-states .small-state .box-text {
   font-size: 1.125rem;
   line-height: 1.35rem;
+  color: #fff;
 }
 
 .map-content-wrap .select2-container--default .select2-selection--single {

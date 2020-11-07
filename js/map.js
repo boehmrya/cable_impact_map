@@ -133,13 +133,13 @@ jQuery(function($){
         d3.select(this).style('fill', '#5AC9E7'); // fill current clicked state with blue
 
         // clear colors on all existing small boxes
-        $('#small-states .small-state .box').css('background', '#343F49');
+        $('#small-states .small-state .box').css('background', '#fff');
 
         // check if it is a small state
-        // if so, find the box and make it purple
+        // if so, find the box and make it blue
         if (small_states.hasOwnProperty(state_id[d.id])) {
           var state_box_id = '#' + state_id[d.id] + '-Box';
-          $(state_box_id).css('background', '#ffca36');
+          $(state_box_id).css('background', '#5AC9E7');
         }
 
         // update the select list to the chosen state
@@ -163,13 +163,13 @@ jQuery(function($){
         d3.select(selected_elem).style('fill', '#5AC9E7'); // fill current clicked state with blue
 
         // clear colors on all existing small boxes
-        $('#small-states .small-state .box').css('background', '#343F49');
+        $('#small-states .small-state .box').css('background', '#fff');
 
         // check if it is a small state
         // if so, find the box and make it purple
         if (small_states.hasOwnProperty(selected)) {
           var state_box_id = '#' + selected + '-Box';
-          $(state_box_id).css('background', '#ffca36');
+          $(state_box_id).css('background', '#5AC9E7');
         }
 
         // update data in sidebar
@@ -210,10 +210,10 @@ jQuery(function($){
     // trigger events when small boxes are clicked
     $('#small-states .small-state .box').on('click', function() {
       // clear colors on all existing small boxes
-      $('#small-states .small-state .box').css('background', '#343F49');
+      $('#small-states .small-state .box').css('background', '#fff');
 
       // make background of this small box purple
-      $(this).css('background', '#ffca36');
+      $(this).css('background', '#5AC9E7');
 
       // split the id on the box to get the state abbreviation
       var box_id = $(this).attr('id');
