@@ -50,6 +50,7 @@ h2.map-section-title {
 .map-content-wrap #state-map {
   width: 790px;
   float: left;
+  position: relative;
 }
 
 .data-col-title {
@@ -75,18 +76,19 @@ h2.map-section-title {
   margin-bottom: 12px;
   margin-left: 20px;
   display: list-item;
+  color: #fff;
 }
 
 .map-content-wrap .isp-operators .provider a {
   text-transform: uppercase;
   text-decoration: none;
-  color: #343F49;
+  color: #fff;
   font-size: 1.125rem;
   line-height: 1.5625rem;
 }
 
 .map-content-wrap .isp-operators .provider a:hover {
-  border-bottom: 2px solid #343F49;
+  border-bottom: 2px solid #fff;
 }
 
 .map-content-wrap #small-states {

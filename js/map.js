@@ -183,6 +183,12 @@ $(function($){
       // get location from dict
       var state = data_states[state_id];
 
+      // fill data columns
+      $('#jobs-data').text(state.jobs);
+      $('#employees-data').text(state.employees);
+      $('#economic-impact-data').text(state.total);
+
+
       // fill in cale isps with name and link
       // first, empty out the block
       $("#isp-operator-names").empty();
