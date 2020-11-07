@@ -73,14 +73,13 @@ h2.map-section-title {
 }
 
 .map-content-wrap .isp-operators .provider {
-  margin-bottom: 12px;
+  margin-bottom: 2px;
   margin-left: 20px;
   display: list-item;
   color: #fff;
 }
 
 .map-content-wrap .isp-operators .provider a {
-  text-transform: uppercase;
   text-decoration: none;
   color: #fff;
   font-size: 1.125rem;
@@ -88,7 +87,7 @@ h2.map-section-title {
 }
 
 .map-content-wrap .isp-operators .provider a:hover {
-  border-bottom: 2px solid #fff;
+  color: #5AC9E7;
 }
 
 .map-content-wrap #small-states {

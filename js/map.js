@@ -230,6 +230,6 @@ $(function($){
       $("#filterFormStateSelect").val(box_state).trigger('change');
     });
 
-    updateData('US');
+    updateData('AL');
 
   });
