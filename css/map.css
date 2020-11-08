@@ -236,6 +236,21 @@ h2.map-section-title {
     clear: both;
     display: table;
   }
+  .data-col-block {
+    float: left;
+    width: 48%;
+  }
+  .data-col-block.jobs,
+  .data-col-block.economic-impact {
+    margin-right: 4%;
+  }
+  .map-content-wrap .isp-operators .provider {
+    margin-bottom: 2px;
+    margin-left: 0px;
+    margin-right: 15px;
+    display: block;
+    float: left;
+  }
   .map-content-wrap #state-map {
     float: none;
     width: 100%;
@@ -257,25 +272,29 @@ h2.map-section-title {
   .map-content-wrap .select2-container--default {
     max-width: 50%;
   }
-  .map-content-wrap .isp-operators {
-    float: left;
-    width: 48%;
-  }
 }
 @media all and (max-width: 767px) {
-  .map-content-wrap #state-map {
-    margin-top: 0;
+  .map-wrap {
+    width: auto;
   }
+  .map-content-wrap .select2-container--default .select2-selection--single .select2-selection__rendered,
+  .data-col-title {
+    font-size: 1.25rem;
+  }
+  .data-col-item {
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+}
+@media all and (max-width: 499px) {
   .map-content-wrap .select2-container--default {
-    max-width: 100%;
+    max-width: none;
   }
-  .map-content-wrap .isp-operators {
-    width: 100%;
-    max-width: 400px;
-    float: none;
-    margin: 0 auto;
+  .map-content-wrap #small-states .small-state .box-text {
+    font-size: 1rem;
+    line-height: 1rem;
   }
-  .map-content-wrap .isp-title {
-    font-size: 1.5rem;
+  .map-content-wrap #small-states .small-state {
+    margin-right: 10px;
   }
 }
