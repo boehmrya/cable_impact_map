@@ -107,11 +107,25 @@ $(function($){
       .append("path")
       .attr("d", path)
       .attr("id", function(d) { return state_id[d.id]; })
-      .attr("class", 'state')
+      .attr("class", function(d) {
+        if (state_id[d.id] == 'AL') {
+          return 'state active';
+        }
+        else {
+          return 'state';
+        }
+      })
       .style("cursor", "pointer")
       .style("stroke", "#343F49")
       .style("stroke-width", "1.5")
-      .style("fill", "#fff")
+      .style("fill", function(d) {
+        if (state_id[d.id] == 'AL') {
+          return '#5AC9E7';
+        }
+        else {
+          return '#fff';
+        }
+      })
       .on('mouseover', function(d, i) {
         if (!d3.select(this).classed('active')) {
           d3.select(this).style('fill', '#5AC9E7'); // change to blue on hover
