@@ -72,8 +72,9 @@ $(function($){
   var w, width, height, wScale, hScale, mapSize, mapRatio;
 
   w = $(window).width();
+
   //Width and height of map
-  width = parseInt(d3.select('#state-map').style('width'));
+  width = parseInt(d3.select('.state-map').style('width'));
 
   mapRatio = .71
   height = width * mapRatio;
@@ -91,156 +92,36 @@ $(function($){
 
 
   //Create SVG element and append map to the SVG
-  var svg = d3.select("#state-map")
+  var svg = d3.select(".state-map")
   			.append("svg")
         .attr("preserveAspectRatio", "xMinYMin meet")
         .attr("viewBox", viewBox);
 
   // Load GeoJSON for US States
   d3.json("../maps/us-states.json", function(json) {
-
     // Bind the data to the SVG and create one path per GeoJSON feature
     // This builds the map
     svg.selectAll("path")
       .data(json.features)
       .enter()
+      .append('a')
+        .attr("target", "_blank")
+        .attr('xlink:href', function(d) { return 'state_fact_sheets/' + state_id[d.id] + '/report.pdf'; })
       .append("path")
-      .attr("d", path)
-      .attr("id", function(d) { return state_id[d.id]; })
-      .attr("class", function(d) {
-        if (state_id[d.id] == 'AL') {
-          return 'state active';
-        }
-        else {
-          return 'state';
-        }
-      })
-      .style("cursor", "pointer")
-      .style("stroke", "#343F49")
-      .style("stroke-width", "1.5")
-      .style("fill", function(d) {
-        if (state_id[d.id] == 'AL') {
-          return '#5AC9E7';
-        }
-        else {
-          return '#fff';
-        }
-      })
-      .on('mouseover', function(d, i) {
-        if (!d3.select(this).classed('active')) {
-          d3.select(this).style('fill', '#5AC9E7'); // change to blue on hover
-        }
-      })
-      .on('mouseout', function(d, i) {
-        if (!d3.select(this).classed('active')) {
-          d3.select(this).style('fill', '#fff'); // remove blue
-        }
-      })
-      .on('click', function(d, i) {
-        d3.selectAll('path').classed('active', false); // remove active classes
-        d3.selectAll('path').style({ 'fill': '#fff' }); // clear all colors
-        d3.select(this).classed('active', true); // add active class to current element
-        d3.select(this).style('fill', '#5AC9E7'); // fill current clicked state with blue
+        .attr("d", path)
+        .attr("id", function(d) { return state_id[d.id]; })
+        .attr("class", 'state')
+        .style("cursor", "pointer")
+        .style("stroke", "#fff")
+        .style("stroke-width", "1.5")
+        .style("fill", "#343F49")
+        .on('mouseover', function(d, i) {
+          d3.select(this).style('fill', '#e71b4f'); // change to blue on hover
+        })
+        .on('mouseout', function(d, i) {
+          d3.select(this).style('fill', '#343F49'); // remove blue
+        });
 
-        // clear colors on all existing small boxes
-        $('#small-states .small-state .box').css('background', '#fff');
-
-        // check if it is a small state
-        // if so, find the box and make it blue
-        if (small_states.hasOwnProperty(state_id[d.id])) {
-          var state_box_id = '#' + state_id[d.id] + '-Box';
-          $(state_box_id).css('background', '#5AC9E7');
-        }
-
-        // update the select list to the chosen state
-        $("#filterFormStateSelect").val(state_id[d.id]).trigger('change');
-        // run update data function
-        updateData(state_id[d.id]);
-      });
-
-      updateData('AL');
-      $('#AL').trigger('click');
-
-    });
-
-    // trigger map click events on select list change events
-    $("#filterFormStateSelect").change(function() {
-      $("#filterFormStateSelect option:selected").each(function(){
-        var selected = $(this).val();
-        var selected_elem = '#state-map svg #' + selected;
-
-        // update the map
-        d3.selectAll('path').classed('active', false); // remove active classes
-        d3.selectAll('path').style({ 'fill': '#fff' }); // clear all colors
-        d3.select(selected_elem).classed('active', true); // add active class to current element
-        d3.select(selected_elem).style('fill', '#5AC9E7'); // fill current clicked state with blue
-
-        // clear colors on all existing small boxes
-        $('#small-states .small-state .box').css('background', '#fff');
-
-        // check if it is a small state
-        // if so, find the box and make it purple
-        if (small_states.hasOwnProperty(selected)) {
-          var state_box_id = '#' + selected + '-Box';
-          $(state_box_id).css('background', '#5AC9E7');
-        }
-
-        // update data in sidebar
-        updateData(selected);
-      });
-    });
-
-    // update information in sidebar card
-    // runs when dot is clicked or option in dropdown is selected
-    function updateData(state_id) {
-      // get location from dict
-      var state = data_states[state_id];
-
-      // fill data columns
-      $('#jobs-data').text(state.jobs);
-      $('#employees-data').text(state.employees);
-      $('#economic-impact-data').text(state.total);
-
-
-      // fill in cale isps with name and link
-      // first, empty out the block
-      $("#isp-operator-names").empty();
-
-      // Loading provider names into array to allow alpha sorting of provider images (quickfix - this module is not tied to its own Drupal admin sort preference...)
-      var providerNames = [];
-      $.each(data_states[state_id].providers, function(i,v) {
-           providerNames.push(this.name);
-      });
-
-      providerNames.sort();
-
-      for(var q=0; q < providerNames.length; q++) {
-          $.each(data_states[state_id].providers, function(i,v) {
-              if(this.name == providerNames[q])
-                $("#isp-operator-names").append("<div class=\"provider\"><a href=\"" + this.link + "\" target=\"_blank\">" + this.name + "</a></div>");
-          });
-      }
-    }
-    // end updateData function
-
-    // convert select list into custom menu
-    $('#filterFormStateSelect').select2();
-
-    // trigger events when small boxes are clicked
-    $('#small-states .small-state .box').on('click', function() {
-      // clear colors on all existing small boxes
-      $('#small-states .small-state .box').css('background', '#fff');
-
-      // make background of this small box purple
-      $(this).css('background', '#5AC9E7');
-
-      // split the id on the box to get the state abbreviation
-      var box_id = $(this).attr('id');
-      var box_id_parts = box_id.split("-");
-      var box_state = box_id_parts[0];
-
-      // set value in the select list and trigger an on change event
-      $("#filterFormStateSelect").val(box_state).trigger('change');
     });
 
   });
